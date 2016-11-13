@@ -153,10 +153,10 @@ void RunWorker() {
     distlr::DataIter iter(filename, num_feature_dim);
     lr.Train(iter, batch_size);
 
-    if (rank == 0 and i % test_interval == 0) {
+    if (rank == 0 and (i + 1) % test_interval == 0) {
       std::string filename = root + "/test/part-001";
       distlr::DataIter test_iter(filename, num_feature_dim);
-      lr.Test(test_iter, i);
+      lr.Test(test_iter, i + 1);
     }
   }
   std::string modelfile = root + "/models/part-00" + std::to_string(rank + 1);
