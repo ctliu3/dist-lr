@@ -50,10 +50,10 @@ float ToFloat(const char* str) {
       ++p;
       continue;
     }
-    if (base > 0) {
+    if (base >= 1.0) {
       integer = integer * 10 + (*p - '0');
     } else {
-      decimal = base * (*p - '0');
+      decimal += base * (*p - '0');
       base *= 0.1;
     }
     ++p;
